@@ -1,0 +1,60 @@
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+*-debug.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# VSCode
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Local history
+.history/
+
+# Misc
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+firebase-debug.log
+firestore-export/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Firebase
+.firebase
+.runtimeconfig.json
+
+# OS/editor backups
+*~
+*.swp
+*.bak
+*.tmp
+
+.env
+src/environments/environment.ts
+

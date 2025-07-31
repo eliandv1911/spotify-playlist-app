@@ -1,0 +1,47 @@
+<div class="container d-flex justify-content-center align-items-center minHeight-85vh">
+  <div class="card shadow" style="max-width: 400px; width: 100%;">
+    <div class="card-body">
+      <h3 class="text-center mb-4">Register</h3>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" type="email" class="form-control"
+            [class.is-invalid]="email.invalid && email.touched" />
+          <div *ngIf="email.invalid && email.touched" class="invalid-feedback">
+            Please enter a valid email.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password">Password</label>
+          <input id="password" formControlName="password" type="password" class="form-control"
+            [class.is-invalid]="password.invalid && password.touched" />
+          <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+            Password is required (min 6 characters).
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="confirmPassword">Confirm Password</label>
+          <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control"
+            [class.is-invalid]="(confirmPassword.invalid && confirmPassword.touched) || (registerForm.hasError('passwordMismatch') && confirmPassword.touched)" />
+          <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="invalid-feedback">
+            Confirming your password is required.
+          </div>
+          <div *ngIf="registerForm.hasError('passwordMismatch') && confirmPassword.touched" class="invalid-feedback">
+            Passwords do not match.
+          </div>
+        </div>
+
+        <button class="btn btn-primary w-100" [disabled]="registerForm.invalid">Register</button>
+
+        <div class="text-center mt-3">
+          <button class="btn btn-link" (click)="goToLogin()">Already have an account? Log In</button>
+        </div>
+        <div *ngIf="error" class="mt-2 text-danger text-center">
+          Registration failed. Please try again.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

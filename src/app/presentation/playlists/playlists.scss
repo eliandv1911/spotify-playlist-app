@@ -1,0 +1,19 @@
+.spinner-container {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #555;
+  }
+}

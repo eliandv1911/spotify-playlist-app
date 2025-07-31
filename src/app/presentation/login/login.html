@@ -1,0 +1,44 @@
+<div class="container d-flex justify-content-center align-items-center minHeight-85vh">
+  <div class="card shadow" style="max-width: 400px; width: 100%;">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Log In</h3>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email"
+            [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="invalid-feedback">
+            Please enter a valid email.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password"
+            placeholder="Enter your password"
+            [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" />
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            class="invalid-feedback">
+            Please enter your password.
+          </div>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+            Log In
+          </button>
+
+          <div *ngIf="error" class="mt-2 text-danger text-center">
+            Usuario o contraseña incorrectos
+          </div>
+        </div>
+      </form>
+
+      <div class="text-center mt-3">
+        <p><a class="link-opacity-100" href="/forgot-password">Forgot password?</a></p>
+        <p><a class="link-opacity-100" href="/register">Create an account</a></p>
+      </div>
+    </div>
+  </div>
+</div>

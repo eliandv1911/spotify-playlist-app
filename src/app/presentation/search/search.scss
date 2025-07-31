@@ -1,0 +1,31 @@
+.spinner-container {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #555;
+  }
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.minHeight-85vh {
+  min-height: 85vh;
+}

@@ -1,0 +1,90 @@
+<div class="container minHeight-85vh" *ngIf="!isLoading">
+  <section class="container py-4">
+    <h1 class="text-center mb-4 text-warning">Song Finder</h1>
+
+    <form (ngSubmit)="search()" class="d-flex mb-4 gap-2">
+      <input type="text" [(ngModel)]="searchTerm" name="search" class="form-control" placeholder="Search for a song..."
+        required />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
+    <div *ngIf="songs.length > 0" class="container mt-4">
+      <h2 class="mb-4 text-light">Search Results</h2>
+
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div *ngFor="let song of songs" class="col">
+          <div class="card h-100 shadow-sm">
+            <img [src]="song.imageUrl" [alt]="song.name" class="card-img-top"
+              style="height: 200px; object-fit: cover;" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ song.name }}</h5>
+              <p class="card-text text-muted">{{ song.artists }}</p>
+              <button class="btn btn-success mt-auto" (click)="openModal(song)" data-bs-toggle="modal"
+                data-bs-target="#playlistModal">
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <nav *ngIf="totalResults > pageSize">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 0">
+            <button class="page-link" (click)="changePage(currentPage - 1)">previous</button>
+          </li>
+
+          <li class="page-item" *ngFor="let page of getPageRange()" [class.active]="page === currentPage">
+            <button class="page-link" (click)="changePage(page)">{{ page + 1 }}</button>
+          </li>
+
+          <li class="page-item" [class.disabled]="(currentPage + 1) * pageSize >= totalResults">
+            <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+
+  <div class="modal fade" id="playlistModal" tabindex="-1" aria-labelledby="playlistModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="playlistModalLabel">Add to list</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>{{ selectedSong?.name }}</strong></p>
+
+          <label for="playlistSelect">Selecciona una lista:</label>
+          <select id="playlistSelect" class="form-select mb-2" [(ngModel)]="selectedListName">
+            <option *ngFor="let p of playlists" [value]="p.listName">{{ p.listName }}</option>
+            <option value="__custom__">+ Create new list</option>
+          </select>
+
+          <input *ngIf="selectedListName === '__custom__'" type="text" class="form-control" [(ngModel)]="newListName"
+            placeholder="New list name" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" (click)="confirmAdd()"
+            [disabled]="selectedListName === '__custom__' && !newListName.trim()" data-bs-dismiss="modal">
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-primary-subtle" *ngIf="isLoading" class="spinner-container">
+  <div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-3 text-light">Searching for songs...</p>
+</div>

@@ -1,0 +1,30 @@
+<div *ngIf="!isLoading" class="container mt-4">
+  <h2 class="mb-4 text-light">My playlists</h2>
+  <div *ngFor="let group of playlists" class="mb-5">
+    <h4 class="mb-3 border-bottom pb-2 text-warning">{{ group.listName }}</h4>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+      <div *ngFor="let song of group.songs" class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="d-flex align-items-center p-3">
+            <img [src]="song.imageUrl" class="rounded me-3" width="60" height="60" alt="Song image">
+            <div class="flex-grow-1">
+              <h6 class="card-title mb-1">{{ song.name }}</h6>
+              <p class="card-text text-muted mb-2">{{ song.artists }}</p>
+              <button (click)="remove(song.id!)" class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="spinner-container">
+  <div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-3 text-light">Loading playlists...</p>
+</div>
