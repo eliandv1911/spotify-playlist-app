@@ -63,7 +63,7 @@ La aplicación fue desplegada en Firebase Hosting y está disponible en el sigui
 - Para el correcto funcionamiento de la autenticación y almacenamiento de listas, se requierió de una cuenta de Firebase configurada con:
   - Autenticación por correo y contraseña habilitada.
   - Firestore como base de datos.
-- El acceso a la API de Spotify con un token válido. Este se obtuvo a través del flujo de autorización correspondiente en Spotify.
+- El acceso a la API de Spotify con un token válido. Este se obtuvo a través del flujo de autorización correspondiente en Spotify. Lo cual por seguridad no se incluye en el actual repositorio.
 - Este proyecto no incluye pruebas automatizadas.
 - El entorno fue desarrollado y probado localmente con Angular v20.1.3.
 
